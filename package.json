@@ -1,0 +1,43 @@
+{
+  "name": "exa-search",
+  "version": "1.0.0",
+  "description": "Exa AI Search Plugin for OpenClaw - Direct HTTP/SSE integration for web search, code search, and company research",
+  "author": "wysh3 <vishruthmr25@gmail.com>",
+  "license": "GPL-3.0",
+  "type": "module",
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "exa-client.ts",
+    "openclaw.plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "exa",
+    "search",
+    "web-search",
+    "code-search",
+    "company-research",
+    "ai",
+    "agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wysh3/exa-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wysh3/exa-search/issues"
+  },
+  "homepage": "https://github.com/wysh3/exa-search#readme",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}

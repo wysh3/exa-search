@@ -1,0 +1,19 @@
+{
+  "id": "exa-search",
+  "name": "Exa Search Plugin",
+  "version": "1.0.0",
+  "description": "Direct integration with Exa AI search via HTTP/SSE - No API key required. Includes web_search, code_search, and company_research tools.",
+  "author": "Vishruth",
+  "main": "./index.ts",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "Enable Exa Search",
+      "description": "Enable web search, code search, and company research tools via Exa AI"
+    }
+  }
+}
