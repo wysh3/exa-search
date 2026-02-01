@@ -2,8 +2,6 @@
 
 Exa AI neural search integration — web search, code search, and company research. No API key required.
 
----
-
 ## Tools
 
 | Tool | Purpose |
@@ -12,33 +10,18 @@ Exa AI neural search integration — web search, code search, and company resear
 | `code_search` | Code from GitHub, Stack Overflow, docs |
 | `company_research` | Business info, news, insights |
 
----
-
-## Installation
+## Install & Enable
 
 ```bash
+# Install
 openclaw plugins install exa-search
+
+# Enable
+openclaw plugins enable exa-search
+
+# Restart gateway
+openclaw gateway restart
 ```
-
----
-
-## Configuration
-
-Add to `openclaw.json`:
-
-```json
-{
-  "plugins": {
-    "entries": {
-      "exa-search": { "enabled": true }
-    }
-  }
-}
-```
-
-Restart: `openclaw gateway restart`
-
----
 
 ## Usage
 
@@ -48,16 +31,10 @@ Find React useState hook examples
 Research "Anthropic" company
 ```
 
----
-
 ## Links
 
 - **npm:** [npmjs.com/package/exa-search](https://www.npmjs.com/package/exa-search)
 - **GitHub:** [github.com/wysh3/exa-search](https://github.com/wysh3/exa-search)
 - **License:** GPL-3.0
-
----
-
-## Credits
 
 [OpenClaw](https://openclaw.ai) · [Exa AI](https://exa.ai)
