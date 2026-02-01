@@ -13,13 +13,49 @@ Exa AI neural search integration — web search, code search, and company resear
 ## Install & Enable
 
 ```bash
-# Install
+# Step 1: Install from npm
 openclaw plugins install exa-search
 
-# Enable
+# Step 2: Enable the plugin
 openclaw plugins enable exa-search
 
-# Restart gateway
+# Step 3: Restart gateway
+openclaw gateway restart
+
+# Step 4: Verify it's loaded
+openclaw plugins list | grep exa-search
+```
+
+### Troubleshooting
+
+If the plugin shows as "disabled" after enabling, you may need to manually add it to the `plugins.allow` array in your config:
+
+```bash
+# Edit your config
+nano ~/.openclaw/openclaw.json
+```
+
+Add `"exa-search"` to the `plugins.allow` array:
+
+```json
+{
+  "plugins": {
+    "allow": [
+      "telegram",
+      "discord",
+      "exa-search"
+    ],
+    "entries": {
+      "exa-search": {
+        "enabled": true
+      }
+    }
+  }
+}
+```
+
+Then restart:
+```bash
 openclaw gateway restart
 ```
 

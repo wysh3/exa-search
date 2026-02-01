@@ -1,6 +1,6 @@
 {
   "name": "exa-search",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Exa AI Search Plugin for OpenClaw - Direct HTTP/SSE integration for web search, code search, and company research",
   "author": "wysh3 <vishruthmr25@gmail.com>",
   "license": "GPL-3.0",

@@ -1,7 +1,7 @@
 {
   "id": "exa-search",
   "name": "Exa Search Plugin",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Direct integration with Exa AI search via HTTP/SSE - No API key required. Includes web_search, code_search, and company_research tools.",
   "author": "wysh3",
   "main": "./index.ts",
