@@ -1,6 +1,6 @@
 # Exa Search Plugin for OpenClaw
 
-Exa AI neural search integration — web search, code search, and company research. No API key required.
+Exa AI neural search integration — web search and code search. No API key required.
 
 ## Tools
 
@@ -8,7 +8,6 @@ Exa AI neural search integration — web search, code search, and company resear
 |------|---------|
 | `web_search` | Current information, news, facts |
 | `code_search` | Code from GitHub, Stack Overflow, docs |
-| `company_research` | Business info, news, insights |
 
 ## Install & Enable
 
@@ -64,7 +63,7 @@ openclaw gateway restart
 ```
 Search the web for "latest AI news"
 Find React useState hook examples
-Research "Anthropic" company
+Search code in Python, JavaScript, or any programming language
 ```
 
 ## Links

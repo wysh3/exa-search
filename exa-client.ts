@@ -93,8 +93,9 @@ function extractTextContent(response: ExaResponse): string {
 export async function webSearch(params: {
   query: string;
   numResults?: number;
-  type?: 'auto' | 'fast' | 'deep';
+  type?: 'auto' | 'fast';
   livecrawl?: 'fallback' | 'preferred';
+  category?: 'company' | 'research paper' | 'people';
   contextMaxCharacters?: number;
 }): Promise<string> {
   const response = await callExa('tools/call', {
@@ -114,21 +115,6 @@ export async function codeSearch(params: {
 }): Promise<string> {
   const response = await callExa('tools/call', {
     name: 'get_code_context_exa',
-    arguments: params
-  });
-
-  return extractTextContent(response);
-}
-
-/**
- * Research a company
- */
-export async function companyResearch(params: {
-  companyName: string;
-  numResults?: number;
-}): Promise<string> {
-  const response = await callExa('tools/call', {
-    name: 'company_research_exa',
     arguments: params
   });
 

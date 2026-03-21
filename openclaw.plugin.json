@@ -1,8 +1,8 @@
 {
   "id": "exa-search",
   "name": "Exa Search Plugin",
-  "version": "1.4.0",
-  "description": "Direct integration with Exa AI search via HTTP/SSE - No API key required. Includes web_search, code_search, and company_research tools.",
+  "version": "1.5.0",
+  "description": "Direct integration with Exa AI search via HTTP/SSE - No API key required. Includes web_search and code_search tools.",
   "author": "wysh3",
   "main": "./index.ts",
   "configSchema": {
@@ -13,7 +13,7 @@
   "uiHints": {
     "enabled": {
       "label": "Enable Exa Search",
-      "description": "Enable web search, code search, and company research tools via Exa AI"
+      "description": "Enable web search and code search tools via Exa AI"
     }
   }
 }
