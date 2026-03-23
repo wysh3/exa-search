@@ -8,6 +8,14 @@
  */
 
 import { webSearch, codeSearch } from './exa-client';
+import { webSearch as tavilyWebSearch } from './tavily-client';
+
+function useTavily(config: any): boolean {
+ if (config?.searchProvider === 'tavily') return true;
+ if (config?.searchProvider === 'exa') return false;
+ // Implicit opt-in: use Tavily if API key is available and no explicit provider set
+ return !!(config?.tavilyApiKey || process.env.TAVILY_API_KEY);
+}
 
 export default function (api: any) {
  /**
@@ -45,15 +53,24 @@ export default function (api: any) {
    },
    required: ["query"]
   },
-  async execute(_id: string, params: any) {
+  async execute(_id: string, params: any, config: any) {
    try {
-    const result = await webSearch({
-     query: params.query,
-     numResults: params.numResults || 8,
-     type: params.type || 'auto',
-     livecrawl: params.livecrawl || 'fallback',
-     category: params.category
-    });
+    let result: string;
+
+    if (useTavily(config)) {
+     result = await tavilyWebSearch({
+      query: params.query,
+      maxResults: params.numResults || 8
+     }, config);
+    } else {
+     result = await webSearch({
+      query: params.query,
+      numResults: params.numResults || 8,
+      type: params.type || 'auto',
+      livecrawl: params.livecrawl || 'fallback',
+      category: params.category
+     });
+    }
 
     return { content: [{ type: "text", text: result }] };
    } catch (error: any) {
