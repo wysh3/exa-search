@@ -8,12 +8,30 @@
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
-    "properties": {}
+    "properties": {
+      "searchProvider": {
+        "type": "string",
+        "enum": ["exa", "tavily"],
+        "description": "Search provider for web_search tool. Defaults to 'exa'."
+      },
+      "tavilyApiKey": {
+        "type": "string",
+        "description": "Tavily API key. Can also be set via TAVILY_API_KEY environment variable."
+      }
+    }
   },
   "uiHints": {
     "enabled": {
       "label": "Enable Exa Search",
       "description": "Enable web search and code search tools via Exa AI"
+    },
+    "searchProvider": {
+      "label": "Search Provider",
+      "description": "Choose between Exa (default) or Tavily for web search"
+    },
+    "tavilyApiKey": {
+      "label": "Tavily API Key",
+      "description": "API key for Tavily search (required when using Tavily provider)"
     }
   }
 }
