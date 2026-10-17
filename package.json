@@ -9,6 +9,7 @@
   "files": [
     "index.ts",
     "exa-client.ts",
+    "parallel-client.ts",
     "openclaw.plugin.json",
     "README.md",
     "LICENSE"
@@ -36,7 +37,11 @@
       "./index.ts"
     ]
   },
+  "scripts": {
+    "test": "tsx --test tests/*.test.ts"
+  },
   "devDependencies": {
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "tsx": "^4.20.6"
   }
 }

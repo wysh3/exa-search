@@ -8,14 +8,22 @@
  */
 
 import { webSearch, codeSearch } from './exa-client';
+import { parallelWebSearch } from './parallel-client';
 
 export default function (api: any) {
+ const provider = api.pluginConfig?.searchProvider ?? 'exa';
+ if (provider !== 'exa' && provider !== 'parallel') {
+  throw new Error(`Unsupported searchProvider: ${provider}`);
+ }
+ const useParallel = provider === 'parallel';
  /**
   * Tool 1: Web Search
   */
  api.registerTool({
   name: "web_search",
-  description: "Search the web using Exa AI neural search. Find current information, news, facts, or answer questions about any topic. Returns clean, formatted content ready for LLM use.",
+  description: useParallel
+   ? "Search the web using Parallel Fast search. Find current information, news, facts, or answer questions about any topic. Returns source URLs and relevant excerpts."
+   : "Search the web using Exa AI neural search. Find current information, news, facts, or answer questions about any topic. Returns clean, formatted content ready for LLM use.",
   parameters: {
    type: "object",
    properties: {
@@ -23,6 +31,14 @@ export default function (api: any) {
      type: "string",
      description: "Web search query"
     },
+    ...(useParallel ? {
+     searchQueries: {
+      type: "array",
+      items: { type: "string" },
+      minItems: 1,
+      description: "Related keyword queries, ideally 3-6 words each (default: the query). Use query to describe the search objective, including preferred sources or freshness."
+     }
+    } : {
     numResults: {
      type: "number",
      description: "Number of search results to return (default: 8)"
@@ -42,12 +58,16 @@ export default function (api: any) {
      enum: ["company", "research paper", "people"],
      description: "Filter results to a specific category - 'company': company websites and profiles, 'research paper': academic papers and research, 'people': LinkedIn profiles and personal bios"
     }
+    })
    },
    required: ["query"]
   },
-  async execute(_id: string, params: any) {
+  async execute(_id: string, params: any, signal?: AbortSignal) {
    try {
-    const result = await webSearch({
+    const result = useParallel ? await parallelWebSearch({
+     query: params.query,
+     searchQueries: params.searchQueries
+    }, signal) : await webSearch({
      query: params.query,
      numResults: params.numResults || 8,
      type: params.type || 'auto',

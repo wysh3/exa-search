@@ -8,9 +8,20 @@
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
-    "properties": {}
+    "properties": {
+      "searchProvider": {
+        "type": "string",
+        "enum": ["exa", "parallel"],
+        "default": "exa",
+        "description": "Provider for web_search. code_search always uses Exa."
+      }
+    }
   },
   "uiHints": {
+    "searchProvider": {
+      "label": "Web search provider",
+      "help": "Exa (default) or Parallel Fast. Both work without an API key; code search always uses Exa."
+    },
     "enabled": {
       "label": "Enable Exa Search",
       "description": "Enable web search and code search tools via Exa AI"

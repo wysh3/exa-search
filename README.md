@@ -66,6 +66,52 @@ Find React useState hook examples
 Search code in Python, JavaScript, or any programming language
 ```
 
+### Optional Parallel web search
+
+To use [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp)
+for `web_search`, merge this setting into the plugin entry in
+`~/.openclaw/openclaw.json`:
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "exa-search": {
+        "enabled": true,
+        "config": {
+          "searchProvider": "parallel"
+        }
+      }
+    }
+  }
+}
+```
+
+Keep your existing plugin allowlist and other configuration, then run
+`openclaw gateway restart`. Parallel uses Fast mode at
+`https://search.parallel.ai/mcp`, with no account or API key required. The anonymous
+service has usage limits and is intended for exploration and light use.
+
+With Parallel selected, `query` describes the search objective. An optional
+`searchQueries` array supplies related keyword queries; when omitted, the plugin
+uses `[query]`. Results include source URLs and excerpts. Parallel does not expose
+Exa's `numResults`, `type`, `livecrawl`, or `category` parameters. Describe source
+and freshness preferences in `query` instead. Requests time out after 30 seconds
+and respect tool cancellation; failures are returned as tool errors without
+switching providers.
+
+Exa remains the default when `searchProvider` is omitted or set to `"exa"`.
+`code_search` always uses Exa, regardless of this setting.
+
+## Development
+
+Run the provider and plugin tests with Node.js 22 or newer:
+
+```bash
+npm install
+npm test
+```
+
 ## Links
 
 - **npm:** [npmjs.com/package/exa-search](https://www.npmjs.com/package/exa-search)
